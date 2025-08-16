@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exortando os Evangelhos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #f0e6f6, #e6f0fa);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      color: #2c3e50;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+      color: #34495e;
+    }
+
+    .evangelhos-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      width: 90%;
+      max-width: 1200px;
+      margin-bottom: 50px;
+    }
+
+    .evangelho-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 25px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+
+    .evangelho-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    .evangelho-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,223,0,0.2), transparent 70%);
+      animation: rotateHalo 10s linear infinite;
+    }
+
+    @keyframes rotateHalo {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: #1f3d7a;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #2c3e50;
+    }
+
+    button {
+      margin-top: 15px;
+      background-color: #2980b9;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background-color: #1c5980;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #2c3e50;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Exortando os 4 Evangelhos</h1>
+  </header>
+
+  <div class="evangelhos-container">
+    <div class="evangelho-card">
+      <h2>Mateus</h2>
+      <p id="mateus-quote">“Bem-aventurados os que têm fome e sede de justiça, porque serão saciados.”</p>
+      <button id="btn-mateus">Nova Mensagem</button>
+    </div>
+
+    <div class="evangelho-card">
+      <h2>Marcos</h2>
+      <p id="marcos-quote">“Vinde após mim, e eu vos farei pescadores de homens.”</p>
+      <button id="btn-marcos">Nova Mensagem</button>
+    </div>
+
+    <div class="evangelho-card">
+      <h2>Lucas</h2>
+      <p id="lucas-quote">“Amai os vossos inimigos, fazei o bem aos que vos odeiam.”</p>
+      <button id="btn-lucas">Nova Mensagem</button>
+    </div>
+
+    <div class="evangelho-card">
+      <h2>João</h2>
+      <p id="joao-quote">“Eu sou o caminho, a verdade e a vida.”</p>
+      <button id="btn-joao">Nova Mensagem</button>
+    </div>
+  </div>
+
+  <footer>
+    Inspirado nos ensinamentos de Cristo e nos quatro Evangelhos
+  </footer>
+
+  <script src="/evangelhos.js"></script>
+</body>
+</html>

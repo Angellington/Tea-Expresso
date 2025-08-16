@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inspiração Católica</title>
+  <!-- Fonte bonita do Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    /* RESET BÁSICO */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to bottom, #f2efe4, #c9bfa1);
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: #5d3a00;
+      margin-bottom: 20px;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .quote-box {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .quote-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+    }
+
+    .quote {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      color: #3e2723;
+    }
+
+    button {
+      background-color: #8b5e3c;
+      color: #fff;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #6d4c41;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.9rem;
+      color: #5d3a00;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Reflexão Católica</h1>
+
+  <div class="quote-box">
+    <div class="quote" id="quote">“Ame o Senhor, teu Deus, de todo o teu coração.”</div>
+    <button onclick="newQuote()">Nova Mensagem</button>
+  </div>
+
+  <footer>Inspirado na fé e na tradição Católica</footer>
+
+  <script>
+    const quotes = [
+      "“Ame o Senhor, teu Deus, de todo o teu coração.”",
+      "“Tudo posso naquele que me fortalece.” — Filipenses 4:13",
+      "“Bem-aventurados os misericordiosos, porque alcançarão misericórdia.” — Mateus 5:7",
+      "“Deus é amor; quem permanece no amor permanece em Deus.” — 1 João 4:16",
+      "“Não se turbe o vosso coração; credes em Deus, crede também em mim.” — João 14:1"
+    ];
+
+    function newQuote() {
+      const quoteElement = document.getElementById('quote');
+      let randomIndex;
+      do {
+        randomIndex = Math.floor(Math.random() * quotes.length);
+      } while(quotes[randomIndex] === quoteElement.textContent);
+      quoteElement.textContent = quotes[randomIndex];
+    }
+  </script>
+
+</body>
+</html>

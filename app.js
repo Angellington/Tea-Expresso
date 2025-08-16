@@ -3,10 +3,22 @@ const app = express();
 
 const path = require('path')
 
+const helmet = require('helmet')
+app.use(helmet());
+app.use(express.static('public'));
+
+
+// Configura o EJS como template engine
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'))
+
+
 const filePath = path.join(__dirname, 'files', 'exemplo.pdf')
 
 
 const port = process.env.PORT || 3001
+
+
 
 app.get('/example', (req, res, next) => {
     console.log('Aguarde...')
@@ -80,7 +92,65 @@ app.get('/user', (req, res) => {
     res.jsonp({ user: 'tobi' });
 })
 
+app.get('/redirect', (req, res) => {
+    res.redirect('/foo/bar')
+})
 
+app.get('/new', (req, res) => {
+    res.redirect('/admin')
+})
+
+app.get('/admin', (req, res) => {
+    res.send('É os ADM da bagaça')
+})
+
+
+app.get('/montese/:param', (req, res) => {
+    // vai para a home
+    if(req.params.param === 'hom'){
+        res.redirect('/home')
+    }
+    // vai para a home permanentemente
+    if(req.params.param === 'home'){
+        res.redirect(301, '/home')
+    }
+    // vai direto para o google
+    if(req.params.param === 'google'){
+        res.redirect('http://google.com.br')
+    }
+})
+
+// Retorna para duas rotas atrás
+app.get('/rio-grande-do-sul/esteio/parque-amador/rua-guararapes', (req, res) => {
+    res.redirect('..')
+})
+
+app.get('/catholic', (req, res) => {
+    res.render('index')
+})
+
+
+app.get('/mary', (req, res) => {
+    res.render('main', (err, html) => {
+        res.send(html)
+    })
+})
+
+app.get('/miguel', (req, res) => {
+    res.render('user', { name: 'Jesus' }, (err, html) => {
+        if(err){
+            console.error('Error: ', err)
+        } else {
+            console.log(html)
+        }
+    })
+})
+
+app.get('/evangelhos', (req, res) => {
+    res.render('user', (err, html) => {
+        res.send(html)
+    })
+})
 
 
 app.listen(port, () => {
