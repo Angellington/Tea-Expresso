@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+const router = express.Router();
+
 const port = process.env.PORT || 3001;
 
 app.get('/', (req, res) => {
@@ -17,6 +19,12 @@ app.route('/book')
     .put((req, res) => {
         res.send('Update the book')
     })
+
+
+
+const calendarRouter = require('./routes/calendar')
+
+app.use('/calendar', calendarRouter)
 
 app.listen(port, () =>{
     console.log(`The server is listening at http://localhost:${port}`);
