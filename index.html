@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSONP Example</title>
+</head>
+
+<body>
+    <h1>Recebendo uma callback</h1>
+    <p>O dado é <b id="dataCallback"></b></p>
+
+    <script>
+        function user(data) {
+            const dataCallback = document.getElementById('dataCallback');
+            dataCallback.textContent = data.user;
+        }
+    </script>
+
+    <script src="http://localhost:3001/user?callback=user"></script>
+</body>
+
+</html>
