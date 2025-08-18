@@ -1,24 +1,53 @@
+// import Express
 const express = require('express');
 const app = express();
 const route = express.Router();
+const rfs = require('rotating-file-stream');
 
-const path = require('path')
-const helmet = require('helmet')
 
+// libs
+const path = require('path');
+const helmet = require('helmet');
+const morgan = require('morgan');
+
+// app.set
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 
+
+// app.use
 app.use(helmet());
 app.use(express.json())
+app.use(morgan('dev'))
 
+const accessLogStream = require('./middlewares/acessLogStream');app.use(morgan('combined', { stream: accessLogStream }));
 
+// port
 const port = process.env.PORT || 3002
 
-
+// middlewares
 const hatsuneMikuRouter = require('./routes/songs');
 const kaijuRouter = require('./routes/kaiju');
 
 
+// morgan('tiny')
+// morgan(':method :url :status :res[content-length] - :response-time ms');
+
+
+
+const customLogger = (tokens, req, res) => 
+    [
+      tokens.method(req, res),
+      tokens.url(req, res),
+      tokens.status(req, res),
+      tokens.res(req, res, 'content-length'),
+      '-',
+      tokens['response-time'](req, res), 'ms'
+    ].join(' ');
+  
+app.use(morgan(customLogger));
+
+  
 app.get('/', (req, res) => {
     res.send({name: "Minerva"})
 })
@@ -75,10 +104,12 @@ app.route('/chocolat')
         res.send('Você deletou ela.')
     })
 
-
+// use middleware
 app.use('/hatsune-miku', hatsuneMikuRouter)
 app.use('/kaiju', kaijuRouter)
 
+
+// server
 app.listen(port, () =>  {
     console.log(`App is running at port ${port}`)
 })
