@@ -1,7 +1,7 @@
 // import Express
 const express = require('express');
 const app = express();
-const route = express.Router();
+const router = express.Router();
 const rfs = require('rotating-file-stream');
 
 
@@ -26,8 +26,15 @@ const accessLogStream = require('./middlewares/acessLogStream');app.use(morgan('
 const port = process.env.PORT || 3002
 
 // middlewares
+
 const hatsuneMikuRouter = require('./routes/songs');
 const kaijuRouter = require('./routes/kaiju');
+const yashiro = require('./routes/yashiro')
+const innocense = require('./routes/innocense')
+const lasah = require('./routes/lasah');
+const parameters = require('./routes/parameters');
+
+
 
 
 // morgan('tiny')
@@ -107,8 +114,22 @@ app.route('/chocolat')
 // use middleware
 app.use('/hatsune-miku', hatsuneMikuRouter)
 app.use('/kaiju', kaijuRouter)
+app.use(yashiro)
+app.use(innocense)
+app.use(lasah)
+app.use(parameters)
 
 
+// Router Methods
+app.get('/links', (req, res, next) => {
+    res.links({
+        next: "http://api.example.com/users?page=2",
+        last: "http://api.example.com/users?page=5"
+    })
+})
+
+
+  
 // server
 app.listen(port, () =>  {
     console.log(`App is running at port ${port}`)
