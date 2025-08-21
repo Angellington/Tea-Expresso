@@ -47,3 +47,6 @@
 ::1 - - [20/Aug/2025:00:12:33 +0000] "GET /user/42 HTTP/1.1" 200 26 "-" "PostmanRuntime/7.45.0"
 ::1 - - [20/Aug/2025:00:17:30 +0000] "GET /posts/1 HTTP/1.1" 200 36 "-" "PostmanRuntime/7.45.0"
 ::1 - - [20/Aug/2025:00:17:35 +0000] "GET /posts/4 HTTP/1.1" 200 36 "-" "PostmanRuntime/7.45.0"
+::1 - - [20/Aug/2025:00:52:56 +0000] "GET /posts/4 HTTP/1.1" 200 39 "-" "PostmanRuntime/7.45.0"
+::1 - - [20/Aug/2025:00:53:02 +0000] "PUT /posts/4 HTTP/1.1" 200 36 "-" "PostmanRuntime/7.45.0"
+::1 - - [20/Aug/2025:00:53:06 +0000] "DELETE /posts/4 HTTP/1.1" 500 1265 "-" "PostmanRuntime/7.45.0"

@@ -30,12 +30,32 @@ router.get('/user/:id', (req, res) => {
     res.send(`Usuário carregado: ${req.user.name} com id: ${req.user.id}`);
 })
 
-router.get('/posts/:postId', (req, res) => {
-    res.send(`Post: ${req.params.postId}, título: ${req.post.title}`);
-});
+// router.get('/posts/:postId', (req, res) => {
+//     res.send(`Post: ${req.params.postId}, título: ${req.post.title}`);
+// });
 
 router.param('postId', (req, res, next, id) => {
     req.post = { id, title: "Meu post incrível" }; 
     next();
 });
+
+router.route('/posts/:postId')
+    .all((req, res, next) => {
+        // run all HTTP verbs first
+        next();
+    })
+    .get((req, res, next) => {
+        res.json(req.post)
+    })
+    .put((req, res, next) => {
+        req.post.title = "Post atualizado";
+        res.json(req.post)
+    })
+    .post((req, res, next) => {
+        next(new Error('Post não permitido'));
+    })
+    .delete((req, res, next) => {
+        next(new Error('Delete não permitido'));
+    })
+
 module.exports = router;
